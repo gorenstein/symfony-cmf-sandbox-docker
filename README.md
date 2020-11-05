@@ -1,7 +1,7 @@
 # The Symfony CMF Sandbox in docker 
 
 ## 0. Install
-`git clone git@github.com:gorenstein/symfony-cmf-sandbox-docker.git`
+`git clone https://github.com/gorenstein/symfony-cmf-sandbox-docker.git`
 
 ## 1. First start or reset to default
 ### (Re)Init and up containers
