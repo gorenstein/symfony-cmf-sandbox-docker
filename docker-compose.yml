@@ -1,0 +1,52 @@
+version: '3.7'
+
+services:
+
+    # https://hub.docker.com/_/mariadb
+    db:
+        image: mariadb
+        restart: always
+        volumes:
+            - db_data:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD
+            - MYSQL_DATABASE
+            - MYSQL_USER
+            - MYSQL_PASSWORD
+
+    # https://hub.docker.com/_/phpmyadmin
+    phpmyadmin:
+        image: phpmyadmin
+        ports:
+            - 8081:80
+        depends_on:
+            - db
+
+    php:
+        build:
+            context: .
+            dockerfile: docker/php/Dockerfile
+        volumes:
+            - ./symfony/:/var/www/html/symfony/
+        environment:
+            - MYSQL_DATABASE
+            - MYSQL_USER
+            - MYSQL_PASSWORD
+        depends_on:
+            - db
+
+    nginx:
+        build:
+            context: .
+            dockerfile: docker/nginx/Dockerfile
+        ports:
+            - 8080:80
+        volumes:
+            - ./symfony/:/var/www/html/symfony/
+        depends_on:
+            - php
+            - db
+
+volumes:
+    db_data:
+
