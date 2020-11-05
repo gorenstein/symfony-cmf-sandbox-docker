@@ -1,5 +1,5 @@
 #############################
-## clear existing data of any
+## clear existing data if any
 
 docker-compose rm --stop --force -v # remove container if any
 docker volume rm symfony-cmf-sandbox-docker_db_data # remove database volume if any
