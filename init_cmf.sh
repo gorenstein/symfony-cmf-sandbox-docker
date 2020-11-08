@@ -4,8 +4,8 @@
 docker-compose rm --stop --force -v # remove container if any
 docker volume rm symfony-cmf-sandbox-docker_db_data # remove database volume if any
 # remove cmf source if any
-sudo rm -f symfony/*
-sudo rm -rf symfony/.* &>/dev/null
+sudo rm -Rf symfony/*
+sudo rm -Rf symfony/.* &>/dev/null
 
 #######
 ## init

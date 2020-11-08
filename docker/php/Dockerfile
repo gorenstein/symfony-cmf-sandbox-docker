@@ -22,9 +22,8 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pdo pdo_mysql zip xsl gd intl opcache exif mbstring
 
 # install Composer
-COPY --from=composer:1 /usr/bin/composer /usr/local/bin/composer
-RUN composer --version \
-    && composer global require hirak/prestissimo
+COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
+RUN composer --version
 
 # install Symfony CLI
 RUN wget https://get.symfony.com/cli/installer -O - | bash \
