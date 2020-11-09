@@ -24,8 +24,6 @@ cp -R cmf_default/* symfony/
 
 # install dependencies & assets
 docker-compose exec php composer install --working-dir=/var/www/html/symfony
-sudo chown -R $USER:$USER symfony
-sudo chmod -R 777 symfony/var
 
 # init database & fixtures
 docker-compose exec php bin/console doctrine:phpcr:init:dbal --force
@@ -34,6 +32,9 @@ docker-compose exec php bin/console doctrine:phpcr:fixtures:load -n
 
 # create unit test
 docker-compose exec php bin/console doctrine:phpcr:workspace:create sandbox_test
+
+sudo chown -R $USER:$USER symfony
+sudo chmod -R 777 symfony/var
 
 ####################################################
 ## done
